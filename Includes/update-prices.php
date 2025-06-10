@@ -4,21 +4,25 @@ function update_prices() {
 
     // Ensure WooCommerce is active
     if ( ! class_exists( 'WooCommerce' ) ) {
+        error_log("WooCommerce is not active");
         return;
     }
 
     $gold_price = get_gold_price();
     if ( ! $gold_price ) {
+        error_log("Gold price is empty");
         return;
     }
 
     $silver_price = get_silver_price();
     if ( ! $silver_price ) {
+        error_log("Silver Price is empty");
         return;
     }
 
     $platinum_price = get_platinum_price();
     if ( ! $platinum_price ) {
+        error_log("Platinum Price is empty");
         return;
     }
 
