@@ -4,7 +4,7 @@ function get_gold_price()
 {
     $url = 'https://www.goldapi.io/api/XAU/USD';
     $headers = array(
-        'x-access-token: YOUR_API_KEY'
+        'x-access-token: goldapi-1flvssmbgwlovb-io'
     );
 
     $ch = curl_init();
@@ -27,7 +27,7 @@ function get_silver_price()
 {
     $url = 'https://www.goldapi.io/api/XAG/USD';
     $headers = array(
-        'x-access-token: YOUR_API_KEY'
+        'x-access-token: goldapi-1flvssmbgwlovb-io'
     );
 
     $ch = curl_init();
@@ -50,7 +50,7 @@ function get_platinum_price()
 {
     $url = 'https://www.goldapi.io/api/XPT/USD';
     $headers = array(
-        'x-access-token: YOUR_API_KEY'
+        'x-access-token: goldapi-1flvssmbgwlovb-io'
     );
 
     $ch = curl_init();
