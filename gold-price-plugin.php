@@ -1,4 +1,11 @@
 <?php
+/**
+ * Plugin Name: Gold Price Plugin
+ * Version: 1.0.0
+ * Author: Ethan Stabenow
+ */
+
+
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
