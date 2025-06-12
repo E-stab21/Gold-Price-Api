@@ -1,5 +1,6 @@
 <?php
 function update_prices() {
+    require_once( 'fetch-data.php' );
     $updated_count = 0;
 
     // Ensure WooCommerce is active

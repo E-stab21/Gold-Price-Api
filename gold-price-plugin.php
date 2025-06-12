@@ -11,6 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+include_once( 'custom-fields.php' );
+require_once( 'update-prices.php' );
+
 // Scheduling --------------------------------------------------------------------
 define( 'MY_GOLD_PRICE_CRON_HOOK', 'my_hourly_sync' );
 
