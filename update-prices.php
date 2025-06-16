@@ -1,6 +1,6 @@
 <?php
 function update_prices() {
-    require_once( 'fetch-data.php' );
+    require_once('fetch-data.php');
     $updated_count = 0;
 
     // Ensure WooCommerce is active
@@ -21,37 +21,28 @@ function update_prices() {
         return;
     }
 
-    $platinum_price = get_platinum_price();
-    if ( ! $platinum_price ) {
-        error_log("Platinum Price is empty");
-        return;
-    }
-
     $products = wc_get_products(array('limit' => -1));
 
     foreach ($products as $product) {
         $product_id = $product->get_id();
-        $weight = $product->get_meta_data( '_product_weight_ounces' );
-        $markup = $product->get_meta_data( '_markup' );
-        $type = $product->get_meta_data( '_metal_type' );
+        $weight = $product->get_meta( '_product_weight_ounces' );
+        $markup = $product->get_meta( '_markup' );
+        $type = $product->get_meta( '_metal_type', true);
+        error_log( $type );
 
         switch ( $type ) {
             case 'Gold':
+                error_log("Gold price is $gold_price");
                 $price = (float)$gold_price * $weight + $markup;
                 break;
             case 'Silver':
                 $price = (float)$silver_price * $weight + $markup;
                 break;
-            case 'Platinum':
-                $price = (float)$platinum_price * $weight + $markup;
-                break;
             case '': // N/A or not specified
                 // Handle as appropriate, maybe skip calculation or default to 24K
-                error_log( 'MY_GOLD_PRICE_PLUGIN: Product #{$product_id} has no metal selected. Defaulting to 0.' );
-                $price = 0;
-                break;
-                default:
-                    $price = 0;
+                error_log( 'MY_GOLD_PRICE_PLUGIN: Product #{$product_id} has no metal selected. skipping pricing.' );
+                continue 2;
+                default: continue 2;
         }
 
         if ( (float) $product->get_regular_price() !== $price ) {

@@ -5,7 +5,6 @@
  * Author: Ethan Stabenow
  */
 
-
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
     exit;

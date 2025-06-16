@@ -47,7 +47,7 @@ function my_custom_product_fields_display( $product ) {
                 'Platinum' => __( 'Platinum', 'my-text-domain' ),
                 // Add more as needed
             ),
-            'value'       => get_post_meta( $post->ID, '_gold_karat', true ), // Current saved value
+            'value'       => get_post_meta( $post->ID, '_metal_type', true ), // Current saved value
         )
     );
 
@@ -58,8 +58,9 @@ function my_custom_product_fields_save( $post_id ) {
     $product = wc_get_product( $post_id );
 
     // Save the weight
-    $weight = isset( $_POST['_product_weight_ounces']) ? sanitize_text_field( $_POST['_gold_weight_grams'] ) : '';
+    $weight = isset( $_POST['_product_weight_ounces']) ? sanitize_text_field( $_POST['_product_weight_ounces'] ) : '';
     $product->update_meta_data( '_product_weight_ounces', $weight );
+    error_log( print_r( $weight, true ) );
 
     // Save the markup
     $markup = isset( $_POST['_markup']) ? sanitize_text_field( $_POST['_markup'] ) : '';
