@@ -27,16 +27,16 @@ function update_prices() {
         $product_id = $product->get_id();
         $weight = $product->get_meta( '_product_weight_ounces' );
         $markup = $product->get_meta( '_markup' );
+        $percent_markup = $product->get_meta( '_percent_markup' );
         $type = $product->get_meta( '_metal_type', true);
-        error_log( $type );
 
         switch ( $type ) {
             case 'Gold':
                 error_log("Gold price is $gold_price");
-                $price = (float)$gold_price * $weight + $markup;
+                $price = (float)$gold_price * $weight * (1 + $percent_markup) + $markup;
                 break;
             case 'Silver':
-                $price = (float)$silver_price * $weight + $markup;
+                $price = (float)$silver_price * $weight * (1 + $percent_markup)  + $markup;
                 break;
             case '': // N/A or not specified
                 // Handle as appropriate, maybe skip calculation or default to 24K

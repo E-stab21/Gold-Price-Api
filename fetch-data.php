@@ -1,5 +1,4 @@
 <?php
-
 // get prices (metal-api)
 function get_prices_metal_api()
 {
@@ -19,9 +18,9 @@ function get_prices_metal_api()
     $exchangeRates = json_decode($json, true);
 
     // Access the exchange rate values, e.g. GBP:
-    $gold_rate = $exchangeRates['rates']['XAU'];
-    $silver_rate = $exchangeRates['rates']['XAG'];
-    $platinum_rate = $exchangeRates['rates']['XPT'];
+    $gold_rate = $exchangeRates['rates']['USDXAU'];
+    $silver_rate = $exchangeRates['rates']['USDXAG'];
+    $platinum_rate = $exchangeRates['rates']['USDXPT'];
 
     return [$gold_rate, $silver_rate, $platinum_rate];
 }
