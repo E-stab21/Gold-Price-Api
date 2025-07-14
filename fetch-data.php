@@ -27,8 +27,6 @@ function get_prices_metal_api()
 
 // get gold price (gold-api.com)
 function get_gold_price() {
-    $common_markup = 10;
-
     // Initialize CURL:
     $ch = curl_init('https://api.gold-api.com/price/XAU');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -40,12 +38,11 @@ function get_gold_price() {
     // Decode JSON response:
     $exchangeRates = json_decode($json, true);
 
-    return  $exchangeRates['price'] + $common_markup;
+    return  $exchangeRates['price'];
 }
 
 // get gold price (gold-api.com)
 function get_silver_price() {
-    $common_markup = 0.2;
     // Initialize CURL:
     $ch = curl_init('https://api.gold-api.com/price/XAG');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -57,5 +54,5 @@ function get_silver_price() {
     // Decode JSON response:
     $exchangeRates = json_decode($json, true);
 
-    return  $exchangeRates['price'] + $common_markup;
+    return  $exchangeRates['price'];
 }

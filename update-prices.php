@@ -30,19 +30,23 @@ function update_prices() {
         $percent_markup = $product->get_meta( '_percent_markup' );
         $type = $product->get_meta( '_metal_type', true);
 
-        switch ( $type ) {
-            case 'Gold':
-                error_log("Gold price is $gold_price");
-                $price = (float)$gold_price * $weight * (1 + $percent_markup) + $markup;
-                break;
-            case 'Silver':
-                $price = (float)$silver_price * $weight * (1 + $percent_markup)  + $markup;
-                break;
-            case '': // N/A or not specified
-                // Handle as appropriate, maybe skip calculation or default to 24K
-                error_log( 'MY_GOLD_PRICE_PLUGIN: Product #{$product_id} has no metal selected. skipping pricing.' );
-                continue 2;
-                default: continue 2;
+        if ($weight) {
+            switch ( $type ) {
+                case 'Gold':
+                    error_log("Gold price is $gold_price");
+                    $price = (float)$gold_price * $weight * (1 + $percent_markup) + $markup;
+                    break;
+                case 'Silver':
+                    $price = (float)$silver_price * $weight * (1 + $percent_markup)  + $markup;
+                    break;
+                case '': // N/A or not specified
+                    // Handle as appropriate, maybe skip calculation or default to 24K
+                    error_log( 'MY_GOLD_PRICE_PLUGIN: Product #{$product_id} has no metal selected. skipping pricing.' );
+                    continue 2;
+                    default: continue 2;
+            }
+        } else {
+            $price = '';
         }
 
         if ( (float) $product->get_regular_price() !== $price ) {
