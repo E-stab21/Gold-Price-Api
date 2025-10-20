@@ -63,6 +63,7 @@ function my_custom_product_fields_display() {
                 'Gold' => __( 'Gold', 'my-text-domain' ),
                 'Silver' => __( 'Silver', 'my-text-domain' ),
                 'Platinum' => __( 'Platinum', 'my-text-domain' ),
+                'Palladium' => __( 'Palladium', 'my-text-domain' ),
                 'Dental_Alloy' => __( 'Dental Alloy', 'my-text-domain' ),
                 // Add more as needed
             ),

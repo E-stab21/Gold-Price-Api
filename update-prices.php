@@ -6,20 +6,19 @@ function update_prices() {
     // Ensure WooCommerce is active
     if ( ! class_exists( 'WooCommerce' ) ) {
         error_log("WooCommerce is not active");
-        return;
+        return '';
+    }
+
+    $metal_prices = get_prices_metal_api();
+    if (!$metal_prices) {
+        error_log("No metal api");
+        return '';
     }
 
     $gold_price = get_gold_price();
-    if ( ! $gold_price ) {
-        error_log("Gold price is empty");
-        return;
-    }
-
     $silver_price = get_silver_price();
-    if ( ! $silver_price ) {
-        error_log("Silver Price is empty");
-        return;
-    }
+    $platinum_price = $metal_prices[2];
+    $palladium_price = $metal_prices[3];
 
     $products = wc_get_products(array('limit' => -1));
 
@@ -38,6 +37,12 @@ function update_prices() {
                     break;
                 case 'Silver':
                     $price = (float)$silver_price * $weight * (1 + $percent_markup)  + $markup;
+                    break;
+                case 'Platinum':
+                    $price = (float)$platinum_price * $weight * (1 + $percent_markup)  + $markup;
+                    break;
+                case 'Palladium':
+                    $price = (float)$palladium_price * $weight * (1 + $percent_markup)  + $markup;
                     break;
                 case '': // N/A or not specified
                     // Handle as appropriate, maybe skip calculation or default to 24K

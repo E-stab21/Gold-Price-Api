@@ -4,10 +4,10 @@ function get_prices_metal_api()
 {
     // set API Endpoint and API key
     $endpoint = 'latest';
-    $access_key = 'API_KEY';
+    $access_key = 'c5909f2j1ssnwc7116vp868qmcrgm8sy58pj4d1xkrtuf1yue9jxj6w6ezx2';
 
     // Initialize CURL:
-    $ch = curl_init('https://metals-api.com/api/'.$endpoint.'?access_key='.$access_key.'&base=USD&symbols=XAU,XAG,XPT');
+    $ch = curl_init('https://metals-api.com/api/'.$endpoint.'?access_key='.$access_key.'&base=USD&symbols=XAU,XAG,XPT,XPD');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     // Store the data:
@@ -21,8 +21,9 @@ function get_prices_metal_api()
     $gold_rate = $exchangeRates['rates']['USDXAU'];
     $silver_rate = $exchangeRates['rates']['USDXAG'];
     $platinum_rate = $exchangeRates['rates']['USDXPT'];
+    $palladium_rate = $exchangeRates['rates']['USDXPD'];
 
-    return [$gold_rate, $silver_rate, $platinum_rate];
+    return [$gold_rate, $silver_rate, $platinum_rate, $palladium_rate];
 }
 
 // get gold price (gold-api.com)
