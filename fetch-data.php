@@ -4,7 +4,7 @@ function get_prices_metal_api()
 {
     // set API Endpoint and API key
     $endpoint = 'latest';
-    $access_key = 'c5909f2j1ssnwc7116vp868qmcrgm8sy58pj4d1xkrtuf1yue9jxj6w6ezx2';
+    $access_key = getenv('GOLD_PRICE_API_ACCESS_KEY');
 
     // Initialize CURL:
     $ch = curl_init('https://metals-api.com/api/'.$endpoint.'?access_key='.$access_key.'&base=USD&symbols=XAU,XAG,XPT,XPD');
