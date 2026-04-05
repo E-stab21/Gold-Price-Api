@@ -9,16 +9,15 @@ function update_prices() {
         return '';
     }
 
-    $metal_prices = get_prices_metal_api();
-    if (!$metal_prices) {
-        error_log("No metal api");
+    $metal_prices = get_prices_pmxecute();
+    if ($metal_prices['status'] !== 'success') {
         return '';
     }
 
-    $gold_price = get_gold_price();
-    $silver_price = get_silver_price();
-    $platinum_price = $metal_prices[2];
-    $palladium_price = $metal_prices[3];
+    $gold_price = $metal_prices['gold_price'];
+    $silver_price = $metal_prices['silver_price'];
+    $platinum_price = $metal_prices['platinum_price'];
+    $palladium_price = $metal_prices['palladium_price'];
 
     $products = wc_get_products(array('limit' => -1));
 

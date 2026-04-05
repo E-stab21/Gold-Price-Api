@@ -1,0 +1,5 @@
+### GET request to example server
+GET https://pmxconnect.demo.stonex.com/v1_1/GetSpotRates/ALL
+TokenID: APIKEY
+
+###
